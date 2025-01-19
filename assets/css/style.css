@@ -76,8 +76,8 @@ ul, li
 
 .Home-Hero
 {
-    /* margin-top: 130px; */
-    height: 700px;
+    /* margin-top: -100px; */
+    height: 500px;
     width: 100%;
     /* background-color: rgba(100, 165, 100, 0.804); */
 }
@@ -179,7 +179,7 @@ ul, li
 
 .one 
 {
-    height: 600px;
+    height: 500px;
     /* width: 33.33%; */
     /* background-color: #f1f1f1; */
     flex-direction: column;
@@ -332,13 +332,19 @@ footer
     align-items: center;
     padding: 50px;
     /* border: 1px solid black; */
-    /* box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.1); */
+    box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.1);
 }
 
 footer div ul li
 {
     margin: 10px;
     font-size: 25px;
+    transition: 0.5s;
+}
+footer div ul li:hover
+{
+    margin: 15px;
+    font-size: 28px;
 }
 
 
