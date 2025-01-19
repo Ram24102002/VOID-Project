@@ -93,10 +93,10 @@
 
 
 
-<section class="single-product my-5 pt-5">
-    <div class="row mt-5">
-        <div class="col-lg-5 col-md-6 col-sm-12">
-            <img src="assets/imgs/1-img.webp" class="img-fluid single-img w-100 pb-1 " alt="">
+<section class="single-product container center-div pt-5 my-5">
+    <div class="row">
+        <div class="col-lg-5 col-md-12 col-sm-12">
+            <img src="assets/imgs/1-img.webp" class="img-fluid single-img w-100 pb-1 " id="mainImage" alt="">
             <article class="small-img-group center-div">
                 <div class="small-img-col col-lg-3"><img src="assets/imgs/2-img.png" alt=""></div>
                 <div class="small-img-col col-lg-3"><img src="assets/imgs/3-img.png" alt=""></div>
@@ -104,7 +104,103 @@
                 <div class="small-img-col col-lg-3"><img src="assets/imgs/5-img.jpg" alt=""></div>
             </article>
         </div>
+        <div class="single-product-details p-3 col-lg-6 col-md-12 col-sm-12">
+          <h6>T-Shirt</h6>
+          <div>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+        </div>
+          <h3 class="py-4">Red Printed T-Shirt</h3>
+          <h2>₹ 500</h2>
+          <input type="number" value="1">
+          <button class="buyNow" role="button">Add to Cart</button>
+          <p class="py-3 mt-2">Product Details</p>
+          <span>Lorem ipsum dolor sit amet consectetur adipisicing elit</span>
+      </div>
     </div>
+    
+</section>
+
+
+
+<section id="featured" class="w-100">
+  <article class="container">
+      <h3>Featured</h3>
+      <hr>
+  </article>
+  <div class="row mx-auto container-fluid">
+      <div class="product one col-lg-3 col-md-4 col-sm-6 center-div">
+          <img class="img-fluid" src="assets/imgs/1.jpg" alt="">
+          <div class="details">
+              <div>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+              </div>
+              <h3>Product Name</h3>
+              <p>Product Description</p>
+              <p> ₹ 500</p>
+              <button class="newShopNowButton" role="button">Shop now <i class="fa-solid fa-bag-shopping"></i></button>
+          </div>
+
+      </div>
+      <div class="product one col-lg-3 col-md-4 col-sm-6 center-div">
+          <img class="img-fluid" src="assets/imgs/2.jpg" alt="">
+          <div class="details">
+              <div>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+              </div>
+              <h3>Product Name</h3>
+              <p>Product Description</p>
+              <p> ₹ 500</p>
+              <button class="newShopNowButton" role="button">Shop now <i class="fa-solid fa-bag-shopping"></i></button>
+          </div>
+
+      </div>
+      <div class="product one col-lg-3 col-md-4 col-sm-6 center-div">
+          <img class="img-fluid" src="assets/imgs/3.jpg" alt="">
+          <div class="details">
+              <div>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+              </div>
+              <h3>Product Name</h3>
+              <p>Product Description</p>
+              <p> ₹ 500</p>
+              <button class="newShopNowButton" role="button">Shop now <i class="fa-solid fa-bag-shopping"></i></button>
+          </div>
+
+      </div>
+      <div class="product one col-lg-3 col-md-4 col-sm-6 center-div">
+          <img class="img-fluid" src="assets/imgs/4.jpg" alt="">
+          <div class="details">
+              <div>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+              </div>
+              <h3>Product Name</h3>
+              <p>Product Description</p>
+              <p> ₹ 500</p>
+              <button class="newShopNowButton" role="button">Shop now <i class="fa-solid fa-bag-shopping"></i></button>
+          </div>
+
+      </div>
+  </div>
 </section>
 
 
@@ -140,5 +236,22 @@
 
 
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+
+
+      <script>
+        var mainImage = document.getElementById('mainImage');
+        var smallImage = document.querySelectorAll('.small-img-col');
+        
+        smallImage.forEach(function(smallImg){
+            smallImg.addEventListener('click', function(){
+                mainImage.src = smallImg.children[0].src;
+            });
+        });
+      </script>
+      
+
+
+
 </body>
 </html>
