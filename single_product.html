@@ -95,25 +95,27 @@
 
 <section class="single-product container center-div pt-5 my-5">
     <div class="row">
-        <div class="col-lg-5 col-md-12 col-sm-12">
-            <img src="assets/imgs/1-img.webp" class="img-fluid single-img w-100 pb-1 " id="mainImage" alt="">
+        <div class="single-product-gallery col-lg-5 col-md-12 col-sm-12">
+          <article class="main-img center-div">
+            <img src="assets/imgs/1-img.png" class="img-fluid single-img w-100 pb-1 " id="mainImage" alt="">
+          </article>
             <article class="small-img-group center-div">
                 <div class="small-img-col col-lg-3"><img src="assets/imgs/2-img.png" alt=""></div>
                 <div class="small-img-col col-lg-3"><img src="assets/imgs/3-img.png" alt=""></div>
                 <div class="small-img-col col-lg-3"><img src="assets/imgs/4-img.png" alt=""></div>
-                <div class="small-img-col col-lg-3"><img src="assets/imgs/5-img.jpg" alt=""></div>
+                <div class="small-img-col col-lg-3"><img src="assets/imgs/5-img.png" alt=""></div>
             </article>
         </div>
         <div class="single-product-details p-3 col-lg-6 col-md-12 col-sm-12">
           <h6>T-Shirt</h6>
-          <div>
+          <h3 class="py-4">Red Printed T-Shirt</h3>
+          <div class="pb-5">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
         </div>
-          <h3 class="py-4">Red Printed T-Shirt</h3>
           <h2>₹ 500</h2>
           <input type="number" value="1">
           <button class="buyNow" role="button">Add to Cart</button>
@@ -245,7 +247,9 @@
         
         smallImage.forEach(function(smallImg){
             smallImg.addEventListener('click', function(){
+                var copyimg = mainImage.src;
                 mainImage.src = smallImg.children[0].src;
+                smallImg.children[0].src = copyimg;
             });
         });
       </script>
