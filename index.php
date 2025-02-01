@@ -1,9 +1,58 @@
 <?php
-require_once 'server/connection.php';
+session_start();
 
-$sql = "SELECT * FROM product_table";
-$all_product = $conn->query($sql);
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "void_project";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Fetch products from the database
+$product_table = $conn->query("SELECT * FROM product_table");
+
+
+
+$target_dir = "uploads/";
+
+// Ensure the uploads folder exists
+if (!is_dir($target_dir)) {
+    mkdir($target_dir, 0777, true);
+}
+
+$image_paths = [];
+for ($i = 1; $i <= 5; $i++) {
+    $image_key = "product_image" . $i;
+    if (!empty($_FILES[$image_key]['name'])) {
+        $target_file = $target_dir . basename($_FILES[$image_key]["name"]);
+
+        // Debugging messages
+        echo "Trying to upload: " . $_FILES[$image_key]['name'] . "<br>";
+        echo "Temporary file location: " . $_FILES[$image_key]['tmp_name'] . "<br>";
+
+        if (move_uploaded_file($_FILES[$image_key]["tmp_name"], $target_file)) {
+            echo "Upload successful!<br>";
+            $image_paths[] = $target_file;
+        } else {
+            echo "Upload failed for " . $_FILES[$image_key]['name'] . "<br>";
+            echo "Error code: " . $_FILES[$image_key]['error'] . "<br>";
+            $image_paths[] = NULL;
+        }
+    } else {
+        $image_paths[] = NULL;
+    }
+}
+
+
+
 ?>
+
 
 
 <!DOCTYPE html>
@@ -140,40 +189,44 @@ $all_product = $conn->query($sql);
         </header>
         <hr class="mx-auto hr-100">
         <div class=" row py-5 my-2">
+
+
+
+
+
             <!-- --One-- -->
-            <?php while ($row = mysqli_fetch_assoc($all_product)) { ?>
-                <div class="one product col-lg-4 col-md-6 col-sm-6 center-div">
-                    <img class="img-fluid" src="<?php echo $row["product_image"]; ?>" alt="">
-                    <div class="details">
-                        <h3><?php echo $row['product_name']; ?> </h3>
-                        <p>Product Description</p>
-                        <p> ₹ <?php echo $row['product_price']; ?> </p>
-                        <button class="newShopNowButton" role="button">Shop now <i class="fa-solid fa-bag-shopping"></i></button>
+            <?php if ($product_table && $product_table->num_rows > 0): ?>
+                <?php while ($row = $product_table->fetch_assoc()): ?>
+                    <div class="one product col-lg-4 col-md-6 col-sm-6 center-div">
+                        <div class="card">
+                            <img class="img-fluid" src="<?php echo $row['product_image']; ?>" alt="">
+
+                            <div class="details">
+                                <h4><?php echo $row['product_name']; ?> </h4>
+                                <div>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <p><?php echo $row['product_description']; ?> </p>
+                                <p> ₹ <?php echo $row['product_price']; ?> </p>
+                                <button class="newShopNowButton" role="button">Shop now <i class="fa-solid fa-bag-shopping"></i></button>
+                            </div>
+                        </div>
+
                     </div>
-                </div>
-            <?php } ?>
-            <!-- --Two-- -->
-            <!-- <div class="one product col-lg-4 col-md-6 col-sm-6 center-div">
-                <img class="img-fluid" src="assets/imgs/2.jpg" alt="">
-                <div class="details">
-                    <h3>Product Name</h3>
-                    <p>Product Description</p>
-                    <p> ₹ 500</p>
-                    <button class="newShopNowButton" role="button">Shop now <i class="fa-solid fa-bag-shopping"></i></button>
-                </div>
-            </div> -->
-            <!-- --Three-- -->
-            <!-- <div class="one product col-lg-4 col-md-6 col-sm-6 center-div">
-                <img class="img-fluid" src="assets/imgs/3.jpg" alt="">
-                <div class="details">
-                    <h3>Product Name</h3>
-                    <p>Product Description</p>
-                    <p> ₹ 500</p>
-                    <button class="newShopNowButton" role="button">Shop now <i class="fa-solid fa-bag-shopping"></i></button>
-                </div>
-            </div> -->
+
+
+                <?php endwhile; ?>
+            <?php else: ?>
+                <p>No products found in the database.</p>
+            <?php endif; ?>
+        </div>
         </div>
     </section>
+
 
 
 
@@ -184,74 +237,35 @@ $all_product = $conn->query($sql);
             <p>Here you can see our featured products</p>
         </article>
         <div class="row mx-auto container-fluid">
-            <div class="product one col-lg-3 col-md-4 col-sm-6 center-div">
-                <img class="img-fluid" src="assets/imgs/1.jpg" alt="">
-                <div class="details">
-                    <div>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h3>Product Name</h3>
-                    <p>Product Description</p>
-                    <p> ₹ 500</p>
-                    <a href="single_product.html"><button class="newShopNowButton" role="button">Shop now <i class="fa-solid fa-bag-shopping"></i></button></a>
-                </div>
+            <?php if ($product_table && $product_table->num_rows > 0): ?>
+                <?php while ($row = $product_table->fetch_assoc()): ?>
+                    <div class="one product col-lg-4 col-md-6 col-sm-6 center-div">
+                        <div class="card">
+                            <img class="img-fluid" src="<?php echo $row['product_image']; ?>" alt="">
 
-            </div>
-            <div class="product one col-lg-3 col-md-4 col-sm-6 center-div">
-                <img class="img-fluid" src="assets/imgs/2.jpg" alt="">
-                <div class="details">
-                    <div>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h3>Product Name</h3>
-                    <p>Product Description</p>
-                    <p> ₹ 500</p>
-                    <button class="newShopNowButton" role="button">Shop now <i class="fa-solid fa-bag-shopping"></i></button>
-                </div>
+                            <div class="details">
+                                <h4><?php echo $row['product_name']; ?> </h4>
+                                <div>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <p><?php echo $row['product_description']; ?> </p>
+                                <p> ₹ <?php echo $row['product_price']; ?> </p>
+                                <button class="newShopNowButton" role="button">Shop now <i class="fa-solid fa-bag-shopping"></i></button>
+                            </div>
+                        </div>
 
-            </div>
-            <div class="product one col-lg-3 col-md-4 col-sm-6 center-div">
-                <img class="img-fluid" src="assets/imgs/3.jpg" alt="">
-                <div class="details">
-                    <div>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
                     </div>
-                    <h3>Product Name</h3>
-                    <p>Product Description</p>
-                    <p> ₹ 500</p>
-                    <button class="newShopNowButton" role="button">Shop now <i class="fa-solid fa-bag-shopping"></i></button>
-                </div>
 
-            </div>
-            <div class="product one col-lg-3 col-md-4 col-sm-6 center-div">
-                <img class="img-fluid" src="assets/imgs/4.jpg" alt="">
-                <div class="details">
-                    <div>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h3>Product Name</h3>
-                    <p>Product Description</p>
-                    <p> ₹ 500</p>
-                    <button class="newShopNowButton" role="button">Shop now <i class="fa-solid fa-bag-shopping"></i></button>
-                </div>
 
-            </div>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <p>No products found in the database.</p>
+            <?php endif; ?>
+
         </div>
     </section>
 

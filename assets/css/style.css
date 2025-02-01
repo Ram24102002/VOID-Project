@@ -206,10 +206,16 @@ nav
     padding: 100px 10px 200px 10px;
 }
 
-.one 
+
+.card
 {
-    height: 450px;
-    /* width: 33.33%; */
+  width: 250px;
+}
+
+.one , .card
+{
+    height: 500px;
+    /* width: 400px; */
     /* background-color: #f1f1f1; */
     flex-direction: column;
     margin-bottom: 10px;
@@ -604,6 +610,61 @@ footer div p
 
 
 
+#admin-panel
+{
+  height: 90dvh; 
+  width: 100%;
+  background-color: #617852;
+  display: flex;
+}
+
+#admin-panel-aside
+{
+  height: 100%;
+  width: 30%;
+}
+
+#admin-panel-article
+{
+  height: 100%;
+  width: 70%;
+  display: flex;
+}
+
+#admin-panel-article form
+{
+  display: flex;
+  flex-direction: column;
+
+}
+
+.text-input
+{
+  height: 40px;
+  width: 250px;
+  border-radius: 5px;
+  padding: 5px;
+  border: solid black 2px;
+}
+
+#admin-panel-article  textarea
+{
+  height: 100px;
+  padding: 10px;
+  border: #000 solid 2px;
+  /* border-radius: 5px; */
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -918,4 +979,53 @@ footer div p
   .newShopNowButton {
     padding: 12px 50px;
   }
+}
+
+
+
+
+
+/* CSS */
+.upload_sub {
+  appearance: none;
+  background-color: white;
+  border: none;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #3B3B3B;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  min-height: 60px;
+  min-width: 0;
+  outline: none;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 100%;
+  will-change: transform;
+}
+
+.upload_sub:disabled {
+  pointer-events: none;
+}
+
+.upload_sub:hover {
+  color: #fff;
+  background-color: #1A1A1A;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.upload_sub:active {
+  box-shadow: none;
+  transform: translateY(0);
 }
