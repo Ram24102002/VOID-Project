@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    $stmt = $conn->prepare("INSERT INTO product_table (product_name, product_price, product_description, product_image, product_image2, product_image3, product_image4, product_image5) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO cart (product_name, product_price, product_description, product_image, product_image2, product_image3, product_image4, product_image5) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("sdssssss", $product_name, $product_price, $product_description, $image_paths[0], $image_paths[1], $image_paths[2], $image_paths[3], $image_paths[4]);
 
     if ($stmt->execute()) {
@@ -63,10 +63,10 @@ $conn->close();
     <title>Uploads VOID</title>
 </head>
 
-<body style="overflow: hidden;">
+<body>
 
 
-    <nav class="navbar navbar-expand-lg d-flex  py-3">
+    <nav class=" navbar navbar-expand-lg d-flex py-3" style="height: 10dvh;">
         <div class="container d-flex">
 
             <aside class="navbar-brand-aside d-flex">
@@ -137,41 +137,56 @@ $conn->close();
 
 
     <section id="admin-panel">
+
         <aside id="admin-panel-aside">
+            <header>
+                <h1>Databases</h1>
+            </header>
+            <aside id="admin-panel-box">
+                <a href="">New Arrivals</a>
+                <a href="">Collections</a>
+                <a href="">Anime</a>
+                <a href="">Bestseller</a>
+            </aside>
 
         </aside>
 
         <article id="admin-panel-article" class="center-div">
             <form action="" method="post" enctype="multipart/form-data">
-                <!-- <label>Product Name:</label> -->
-                <input type="text" name="product_name" class="text-input" placeholder="Product Name" required><br>
+                <div>
+                    <label><b>Product Name:</b></label>
+                    <input type="text" name="product_name" class="text-input" placeholder="Product Name" required><br>
 
-                <!-- <label>Product Price:</label> -->
-                <input type="number" step="0.01" name="product_price" class="text-input" placeholder="Product Price" required><br>
+                    <label><b>Product Price:</b></label>
+                    <input type="number" step="0.01" name="product_price" class="text-input" placeholder="₹ Product Price" required><br>
 
-                <!-- <label>Product Description:</label> -->
-                <textarea name="product_description" placeholder="Product Description" required></textarea><br>
+                    <!-- <label>Product Description:</label> -->
+                    <textarea name="product_description" placeholder="Product Description" required></textarea><br>
 
-                <div class="img">
-                    <!-- <label>Product Image 1:</label> -->
-                    <input type="file" name="product_image1" required>
                 </div>
-                <div class="img">
-                    <label for="product_image2">Product Image 2:</label>
-                    <input type="file" name="product_image2">
-                </div>
-                <div class="img">
-                    <!-- <label>Product Image 3:</label> -->
-                    <input type="file" name="product_image3">
-                </div>
-                <div class="img">
-                    <!-- <label>Product Image 4:</label> -->
-                    <input type="file" name="product_image4">
-                </div>
-                <div class="img">
-                    <!-- <label>Product Image 5:</label> -->
-                    <input type="file" name="product_image5">
-                </div>
+                <article id="upload-img-article">
+                    <div class="img">
+                        <label class="input-drag-drop" for="img-input-1">Image 1</label>
+                        <input type="file" class="image-input" id="img-input-1" name="product_image1" required>
+                    </div>
+                    <div class="img">
+                        <label class="input-drag-drop" for="img-input-2">Image 2</label>
+                        <input type="file" class="image-input" id="img-input-2" name="product_image1" required>
+                    </div>
+                    <div class="img">
+                        <label class="input-drag-drop" for="img-input-3">Image 3</label>
+                        <input type="file" class="image-input" id="img-input-3" name="product_image1" required>
+                    </div>
+                    <div class="img">
+                        <label class="input-drag-drop" for="img-input-4">Image 4</label>
+                        <input type="file" class="image-input" id="img-input-4" name="product_image1" required>
+                    </div>
+                    <div class="img">
+                        <label class="input-drag-drop" for="img-input-5">Image 5</label>
+                        <input type="file" class="image-input" id="img-input-5" name="product_image1" required>
+                    </div>
+                </article>
+
 
 
 

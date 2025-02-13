@@ -29,40 +29,6 @@ imageRightInput.onchange = function(){
 
 
 
-// Screenshot---------------------------------------------------------
-
-
-    'use strict';
-
-    const screenshotButton = document.createElement('button');
-    const section = document.getElementById('section');
-    screenshotButton.textContent = 'Collage';
-    screenshotButton.style.position = 'fixed';
-    screenshotButton.style.bottom = '10px';
-    screenshotButton.style.right = '45%';
-    screenshotButton.style.zIndex = 9999;
-    screenshotButton.style.height = '50px';
-    screenshotButton.style.width = '150px';
-    document.body.appendChild(screenshotButton);
-
-    const script = document.createElement('script');
-    script.src = "https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js";
-    document.head.appendChild(script);
-
-screenshotButton.addEventListener('click', function() {
-       
-            let div =
-                document.getElementById('section');
-
-          
-            html2canvas(div).then(
-                function (canvas) {
-                    document
-                    .getElementById('output')
-                    .appendChild(canvas);
-                })
-        })
-
 
 
         <aside class="img-box" id="img-box">
